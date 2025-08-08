@@ -1,0 +1,30 @@
+header{
+    background-color: #0f0e57;
+}
+header h1{
+    color: white;
+    font-size: 6rem;
+}
+
+header h3{
+    margin-top: -50px;
+    color: white;
+}
+
+header nav{
+    text-align: center;
+    padding: 10px;
+    background: #fd4136; 
+}
+
+.pageHeading {
+    display: flex;
+    flex-direction: row;
+    background-color: #0f0e57;
+    justify-content: center;
+    margin-bottom: -50px;
+}
+
+.logga{
+    width: 300px;
+}

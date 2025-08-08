@@ -1,0 +1,12 @@
+
+header li{
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+header a{
+    text-decoration: none;
+    color: #0f0e57;
+    font-weight: bold;
+}

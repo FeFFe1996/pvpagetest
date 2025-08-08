@@ -1,0 +1,24 @@
+@import "header.css";
+@import "list.css";
+@import "footer.css";
+@import "text.css";
+
+html{
+    margin: 0 auto;
+}
+
+body {
+    background: #ff9900; 
+    margin: 0 auto;
+}
+
+.mainWrapper{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pageContainer{
+    position: relative;
+    min-height: 100vh;
+}
