@@ -33,8 +33,56 @@
                 </div>   
             </header>
             <main>
+                <script>
+                    async function fetchData(){
+                        const url = "https://api-pv-kx61.onrender.com/bonna"
+                        try{
+                            const response = await fetch(url);
+                            if(!response.ok){
+                               throw new Error("response status: ${response.status}");
+                            }
+                            
+                            const data = await response.json();
+                            console.log(data);
+                        } catch (error){
+                            console.error(error.message);
+                        }
+                    }
+                    
+                    fetchData();
+                    console.log(document.getElementsByName("pass"));
+                    function formInputs(){
+                        let firstName = document.getElementById("fName");
+                        let lastName = document.getElementById("lName");
+                        let pass = "";
+                        if(document.getElementById(tPass).checked){
+                            let pass = document.getElementById(tPass);
+                        }
+                        else if(document.getElementById(koPass).checked){
+                            let pass = document.getElementById(koPass);
+                        }
+                        else if(document.getElementById(kalvPass).checked){
+                            let pass = document.getElementById(koPass);
+                        }
+                        console.log(firstName, lastName, pass)
+                    }
+                </script>
                 <section class="mainWrapper">
                     <h2>Detta är Phestresor</h2>
+                    <form id=bookingForm>
+                        <label for="fName">Förnamn:</label>
+                        <input id="fName" type="text"><br>
+                        <label for="lName">Efternamn:</label>
+                        <input id="lName" type="text"><br>
+                        <label for="Tjurpass">Tjur 450</label>
+                        <input type="radio" name="pass" id="tPass" value="TjurPass"><br>
+                        <label for="koPass">Kopass</label>
+                        <input type="radio" name="pass" id="koPass" value="KoPass"><br>
+                        <label for="kalvpass">Kalvpass</label>
+                        <input type="radio" name="pass" id="kalvPass" value="KalvPass"><br>
+                        
+                        <button onclick="formInputs" value="Submit">Submit</button>
+                    </form>
                         <p>Bacon ipsum dolor amet doner bacon ribeye venison beef ribs. Shankle flank jowl pastrami, andouille turducken pork belly kevin cow cupim short loin turkey biltong rump capicola. Venison bresaola cow, sausage drumstick jerky swine turducken pork loin chicken filet mignon short ribs. Tenderloin buffalo cupim hamburger pork loin doner, venison landjaeger capicola pastrami flank cow chislic. Meatball ball tip pork, chislic pork belly alcatra shankle kielbasa doner corned beef bresaola. Flank capicola strip steak chicken tongue pork loin, turkey rump porchetta tail tri-tip fatback short loin.
 
 Brisket strip steak cow landjaeger pastrami prosciutto, meatloaf chicken kielbasa. Tenderloin porchetta turducken, rump fatback cow short ribs jowl boudin swine. Porchetta chuck meatball ball tip beef shankle cupim venison tri-tip pastrami ribeye. Sausage shoulder tenderloin, pork belly meatball shank jerky kielbasa bacon leberkas tail porchetta drumstick.
@@ -43,7 +91,9 @@ Cow shank buffalo sirloin turkey t-bone. Pig kevin spare ribs, shoulder ribeye p
 
 Fatback picanha boudin kevin t-bone burgdoggen meatloaf pork loin capicola chislic hamburger tail short loin pancetta. Kielbasa bresaola rump biltong. Doner boudin prosciutto brisket tail jowl beef ribs beef ribeye filet mignon short loin ham. Chuck leberkas spare ribs, ham hock pastrami boudin ham sirloin short ribs flank. Shankle short ribs sirloin pastrami tri-tip ball tip bresaola frankfurter leberkas beef ribs landjaeger prosciutto buffalo meatball tenderloin. Pork belly salami shoulder strip steak filet mignon pork loin corned beef boudin spare ribs ground round fatback cupim chuck.
                        </p>
+                    
                 </section> 
+                
             </main>
             <Footer>
                 <div>

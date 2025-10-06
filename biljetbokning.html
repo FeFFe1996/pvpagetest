@@ -34,16 +34,30 @@
             </header>
             <main>
                 <section class="mainWrapper">
-                    <h2>Detta är bästa sidan, Stjärtslaget</h2>
-                        <h3 href="biljetbokning.html">Boka din biljett</h3>
-                        <p>Bacon ipsum dolor amet doner bacon ribeye venison beef ribs. Shankle flank jowl pastrami, andouille turducken pork belly kevin cow cupim short loin turkey biltong rump capicola. Venison bresaola cow, sausage drumstick jerky swine turducken pork loin chicken filet mignon short ribs. Tenderloin buffalo cupim hamburger pork loin doner, venison landjaeger capicola pastrami flank cow chislic. Meatball ball tip pork, chislic pork belly alcatra shankle kielbasa doner corned beef bresaola. Flank capicola strip steak chicken tongue pork loin, turkey rump porchetta tail tri-tip fatback short loin.
-
-Brisket strip steak cow landjaeger pastrami prosciutto, meatloaf chicken kielbasa. Tenderloin porchetta turducken, rump fatback cow short ribs jowl boudin swine. Porchetta chuck meatball ball tip beef shankle cupim venison tri-tip pastrami ribeye. Sausage shoulder tenderloin, pork belly meatball shank jerky kielbasa bacon leberkas tail porchetta drumstick.
-
-Cow shank buffalo sirloin turkey t-bone. Pig kevin spare ribs, shoulder ribeye pork loin cow. Capicola fatback pastrami, doner beef shank bacon filet mignon strip steak. Pig hamburger beef ribs, corned beef jowl rump cupim chislic filet mignon biltong. Brisket venison tail short ribs swine filet mignon. Jowl flank swine kevin tongue boudin jerky short ribs ball tip. Sausage shankle chicken tenderloin alcatra tail leberkas ribeye jerky picanha.
-
-Fatback picanha boudin kevin t-bone burgdoggen meatloaf pork loin capicola chislic hamburger tail short loin pancetta. Kielbasa bresaola rump biltong. Doner boudin prosciutto brisket tail jowl beef ribs beef ribeye filet mignon short loin ham. Chuck leberkas spare ribs, ham hock pastrami boudin ham sirloin short ribs flank. Shankle short ribs sirloin pastrami tri-tip ball tip bresaola frankfurter leberkas beef ribs landjaeger prosciutto buffalo meatball tenderloin. Pork belly salami shoulder strip steak filet mignon pork loin corned beef boudin spare ribs ground round fatback cupim chuck.
-                       </p>
+                    <h2>Biljettbokning</h2>
+                    <script>
+                        async function fetchData(){
+                        const url = "https://api-pv-kx61.onrender.com/stjartslaget"
+                        try{
+                            const response = await fetch(url);
+                            if(!response.ok){
+                               throw new Error("response status: ${response.status}");
+                            }
+                            const data = await response.json();
+                            console.log(data);
+                        } catch (error){
+                            console.error(error.message);
+                            }
+                        }
+                        async function postData(fName, lName, teamName, bigPass, smallPass, msg){
+                        const url = "https://api-pv-kx61.onrender.com/stjartslaget"
+                        const resPost = await fetch(url, {
+                            method: "POST",
+                            body: JSON.stringify({fName: fName, lName: lName, teamName: teamName, bigPass: bigPass, smallPass: smallPass, msg: msg })
+                        })
+                    }
+                    fetchData();
+                    </script>
                 </section> 
             </main>
             <Footer>
