@@ -37,11 +37,11 @@
                     <h2>Biljettbokning</h2>
                     <script>
                         function getAndParseInputData(){
-                            let fName = document.getElementById("fName").value;
-                            let lName = document.getElementById("lName").value;
-                            let teamName = document.getElementById("teamName").value;
-                            let stjPass = document.getElementById("stjPass").value;
-                            let bdPass = document.getElementById("bdPass").value;
+                            const fName = document.getElementById("fName").value;
+                            const lName = document.getElementById("lName").value;
+                            const teamName = document.getElementById("teamName").value;
+                            const stjPass = document.getElementById("stjPass").value;
+                            const bdPass = document.getElementById("bdPass").value;
                             
                             const JsonData = {fName: fName, lName: lName, team: teamName, stjPass: stjPass, bdPass: bdPass};
                             document.getElementById("fName").value = "";
@@ -56,19 +56,20 @@
                         
                         async function postData(JsonData){
                         const url = "https://api-pv-kx61.onrender.com/stjartslaget"
-                        let fName = JsonData.fName;
-                        let lName = JsonData.lName;
-                        let team = JsonData.team;
-                        let stjPass = JsonData.stjPass;
-                        let bdPass = JsonData.bdPass;
+                
                         try{
                         const resPost = await fetch(url, {
                             method: "POST",
-                            headers{
+                            headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         },
-                            body: JSON.stringify({"fName:" fName, "lName:" lName, team: team, stjp: stjPass, bdp: bdPass})
+                            body: JSON.stringify({fName: JsonData.fName, 
+                                                lName: JsonData.lName, 
+                                                teamName: JsonData.team, 
+                                                stjPass: JsonData.stjPass, 
+                                                bdPass: JsonData.bdPass,
+                                                msg: "temp msg"})
                         });
                         if(!resPost.ok){
                             throw new Error("response status: ${response.status}");
