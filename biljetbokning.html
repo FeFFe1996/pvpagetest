@@ -10,6 +10,7 @@
         <link href="./css/main.css" rel="stylesheet" type="text/css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://kit.fontawesome.com/9e2139f62e.js" crossorigin="anonymous"></script>
+        <script src="JS/stjbooking.js" type="application/javascript"></script>
     </head>
     <body>
        <div class="pageContainer">
@@ -35,51 +36,8 @@
             <main>
                 <section class="mainWrapper">
                     <h2>Biljettbokning</h2>
-                    <script>
-                        function getAndParseInputData(){
-                            const fName = document.getElementById("fName").value;
-                            const lName = document.getElementById("lName").value;
-                            const teamName = document.getElementById("teamName").value;
-                            const stjPass = document.getElementById("stjPass").value;
-                            const bdPass = document.getElementById("bdPass").value;
-                            
-                            const JsonData = {fName: fName, lName: lName, team: teamName, stjPass: stjPass, bdPass: bdPass};
-                            document.getElementById("fName").value = "";
-                            document.getElementById("lName").value = "";
-                            document.getElementById("teamName").value = "";
-                            document.getElementById("stjPass").value = "";
-                            document.getElementById("bdPass").value = "";
-                            document.getElementById("skickaIn").innerHTML = "Thanks for your anmälan, vi återkommer inom kort med med mer information"
-                            postData(JsonData)
-                        }
-                        
-                        
-                        async function postData(JsonData){
-                        const url = "https://api-pv-kx61.onrender.com/stjartslaget"
-                
-                        try{
-                        const resPost = await fetch(url, {
-                            method: "POST",
-                            headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                            body: JSON.stringify({fName: JsonData.fName, 
-                                                lName: JsonData.lName, 
-                                                teamName: JsonData.team, 
-                                                stjPass: JsonData.stjPass, 
-                                                bdPass: JsonData.bdPass,
-                                                msg: "temp msg"})
-                        });
-                        if(!resPost.ok){
-                            throw new Error("response status: ${response.status}");
-                        }
-                        } catch(error){
-                                console.error(error.message);
-                            }
-                    }
-                    </script>
                     
+                
                     <label for="fName">Förnamn</label>
                     <input type="text" id="fName"><br>
                     <label for="lName">Efternamn</label>
@@ -90,6 +48,8 @@
                     <input type="number" min="0" max="50" id="stjPass"><br>
                     <label for="bdPass">bdPass</label>
                     <input type="number" min="0" max="50" id="bdPass"><br>
+                    <label for="msg">Vill du meddela ledningen något???</label>
+                    <input type="text" id="msg"><br>
                     <button onclick="getAndParseInputData()">Skicka in</button>
                         
                           
