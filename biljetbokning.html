@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Phestverket</title>
+        <meta name="author" Content="Felix Eriksson">
+        <meta title="Phestverket">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="Landingssida för phestverket, levererat studentkultur sedan 2009, Landingpage for Phestverket, delivered studentculture since 2009">
+        <link href="./css/main.css" rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/9e2139f62e.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+       <div class="pageContainer">
+            <header>
+                <div class="pageHeading">
+                    <div><img src="Logo-vit.png" class="logga"></div>
+                    <div><h1>PHESTVERKET</h1>
+                    <h3 style="text-align: center">Levererat studentkultur sedan 2009</h3></div>
+                    <div><img src="Logo-vit.png" class="logga"></div>
+                </div>
+                   <div>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Hem</a></li>
+                            <li><a href="Stjartslaget.html">Stjärtslaget</a></li>
+                            <li><a href="phestresor.html">Phestresor</a></li>
+                            <li><a href="hafv.html">Häfv</a></li>
+                            <li><a href="ovrigt.html">Övrigt Bös</a></li>
+                        </ul>
+                    </nav>
+                </div>   
+            </header>
+            <main>
+                <section class="mainWrapper">
+                    <h2>Biljettbokning</h2>
+                    <script>
+                        function getAndParseInputData(){
+                            let fName = document.getElementById("fName").value;
+                            let lName = document.getElementById("lName").value;
+                            let teamName = document.getElementById("teamName").value;
+                            let stjPass = document.getElementById("stjPass").value;
+                            let bdPass = document.getElementById("bdPass").value;
+                            
+                            const JsonData = {fName: fName, lName: lName, team: teamName, stjPass: stjPass, bdPass: bdPass};
+                            document.getElementById("fName").value = "";
+                            document.getElementById("lName").value = "";
+                            document.getElementById("teamName").value = "";
+                            document.getElementById("stjPass").value = "";
+                            document.getElementById("bdPass").value = "";
+                            document.getElementById("skickaIn").innerHTML = "Thanks for your anmälan, vi återkommer inom kort med med mer information"
+                            postData(JsonData)
+                        }
+                        
+                        
+                        async function postData(JsonData){
+                        const url = "https://api-pv-kx61.onrender.com/stjartslaget"
+                        let fName = JsonData.fName;
+                        let lName = JsonData.lName;
+                        let team = JsonData.team;
+                        let stjPass = JsonData.stjPass;
+                        let bdPass = JsonData.bdPass;
+                        try{
+                        const resPost = await fetch(url, {
+                            method: "POST",
+                            headers{
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                            body: JSON.stringify({"fName:" fName, "lName:" lName, team: team, stjp: stjPass, bdp: bdPass})
+                        });
+                        if(!resPost.ok){
+                            throw new Error("response status: ${response.status}");
+                        }
+                        } catch(error){
+                                console.error(error.message);
+                            }
+                    }
+                    </script>
+                    
+                    <label for="fName">Förnamn</label>
+                    <input type="text" id="fName"><br>
+                    <label for="lName">Efternamn</label>
+                    <input type="text" id="lName"><br>
+                    <label for="teamName">Teamnamn</label>
+                    <input type="text" id="teamName"><br>
+                    <label for="stjPass">stjPass</label>
+                    <input type="number" min="0" max="50" id="stjPass"><br>
+                    <label for="bdPass">bdPass</label>
+                    <input type="number" min="0" max="50" id="bdPass"><br>
+                    <button onclick="getAndParseInputData()">Skicka in</button>
+                        
+                          
+                    <p id="skickaIn"></p>
+                </section> 
+            </main>
+            <Footer>
+                <div>
+                    <h3>Kontakt</h3>
+                        <ul>
+                            <li><strong>mail:</strong> se i kontakt</li>
+                            <li><strong>Tel:</strong> nej tack</li>
+                            <li><strong>nej</strong></li>
+                        </ul>
+                </div>           
+            </Footer>
+        </div>
+    </body>
+</html>
