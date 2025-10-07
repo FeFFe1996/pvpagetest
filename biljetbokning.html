@@ -36,28 +36,63 @@
                 <section class="mainWrapper">
                     <h2>Biljettbokning</h2>
                     <script>
-                        async function fetchData(){
-                        const url = "https://api-pv-kx61.onrender.com/stjartslaget"
-                        try{
-                            const response = await fetch(url);
-                            if(!response.ok){
-                               throw new Error("response status: ${response.status}");
-                            }
-                            const data = await response.json();
-                            console.log(data);
-                        } catch (error){
-                            console.error(error.message);
-                            }
+                        function getAndParseInputData(){
+                            let fName = document.getElementById("fName").value;
+                            let lName = document.getElementById("lName").value;
+                            let teamName = document.getElementById("teamName").value;
+                            let stjPass = document.getElementById("stjPass").value;
+                            let bdPass = document.getElementById("bdPass").value;
+                            
+                            const JsonData = {fName: fName, lName: lName, team: teamName, stjPass: stjPass, bdPass: bdPass};
+                            document.getElementById("fName").value = "";
+                            document.getElementById("lName").value = "";
+                            document.getElementById("teamName").value = "";
+                            document.getElementById("stjPass").value = "";
+                            document.getElementById("bdPass").value = "";
+                            document.getElementById("skickaIn").innerHTML = "Thanks for your anmälan, vi återkommer inom kort med med mer information"
+                            postData(JsonData)
                         }
-                        async function postData(fName, lName, teamName, bigPass, smallPass, msg){
+                        
+                        
+                        async function postData(JsonData){
                         const url = "https://api-pv-kx61.onrender.com/stjartslaget"
+                        let fName = JsonData.fName;
+                        let lName = JsonData.lName;
+                        let team = JsonData.team;
+                        let stjPass = JsonData.stjPass;
+                        let bdPass = JsonData.bdPass;
+                        try{
                         const resPost = await fetch(url, {
                             method: "POST",
-                            body: JSON.stringify({fName: fName, lName: lName, teamName: teamName, bigPass: bigPass, smallPass: smallPass, msg: msg })
-                        })
+                            headers{
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                            body: JSON.stringify({"fName:" fName, "lName:" lName, team: team, stjp: stjPass, bdp: bdPass})
+                        });
+                        if(!resPost.ok){
+                            throw new Error("response status: ${response.status}");
+                        }
+                        } catch(error){
+                                console.error(error.message);
+                            }
                     }
-                    fetchData();
                     </script>
+                    
+                    <label for="fName">Förnamn</label>
+                    <input type="text" id="fName"><br>
+                    <label for="lName">Efternamn</label>
+                    <input type="text" id="lName"><br>
+                    <label for="teamName">Teamnamn</label>
+                    <input type="text" id="teamName"><br>
+                    <label for="stjPass">stjPass</label>
+                    <input type="number" min="0" max="50" id="stjPass"><br>
+                    <label for="bdPass">bdPass</label>
+                    <input type="number" min="0" max="50" id="bdPass"><br>
+                    <button onclick="getAndParseInputData()">Skicka in</button>
+                        
+                          
+                    <p id="skickaIn"></p>
                 </section> 
             </main>
             <Footer>
