@@ -10,6 +10,7 @@
         <link href="./css/main.css" rel="stylesheet" type="text/css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://kit.fontawesome.com/9e2139f62e.js" crossorigin="anonymous"></script>
+        <script src="JS/stjbooking.js" type="application/javascript"></script>
     </head>
     <body>
        <div class="pageContainer">
@@ -25,9 +26,7 @@
                         <ul>
                             <li><a href="index.html">Hem</a></li>
                             <li><a href="Stjartslaget.html">Stjärtslaget</a></li>
-                            <li><a href="phestresor.html">Phestresor</a></li>
                             <li><a href="hafv.html">Häfv</a></li>
-                            <li><a href="ovrigt.html">Övrigt Bös</a></li>
                         </ul>
                     </nav>
                 </div>   
@@ -35,50 +34,8 @@
             <main>
                 <section class="mainWrapper">
                     <h2>Biljettbokning</h2>
-                    <script>
-                        function getAndParseInputData(){
-                            let fName = document.getElementById("fName").value;
-                            let lName = document.getElementById("lName").value;
-                            let teamName = document.getElementById("teamName").value;
-                            let stjPass = document.getElementById("stjPass").value;
-                            let bdPass = document.getElementById("bdPass").value;
-                            
-                            const JsonData = {fName: fName, lName: lName, team: teamName, stjPass: stjPass, bdPass: bdPass};
-                            document.getElementById("fName").value = "";
-                            document.getElementById("lName").value = "";
-                            document.getElementById("teamName").value = "";
-                            document.getElementById("stjPass").value = "";
-                            document.getElementById("bdPass").value = "";
-                            document.getElementById("skickaIn").innerHTML = "Thanks for your anmälan, vi återkommer inom kort med med mer information"
-                            postData(JsonData)
-                        }
-                        
-                        
-                        async function postData(JsonData){
-                        const url = "https://api-pv-kx61.onrender.com/stjartslaget"
-                        let fName = JsonData.fName;
-                        let lName = JsonData.lName;
-                        let team = JsonData.team;
-                        let stjPass = JsonData.stjPass;
-                        let bdPass = JsonData.bdPass;
-                        try{
-                        const resPost = await fetch(url, {
-                            method: "POST",
-                            headers{
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                            body: JSON.stringify({"fName:" fName, "lName:" lName, team: team, stjp: stjPass, bdp: bdPass})
-                        });
-                        if(!resPost.ok){
-                            throw new Error("response status: ${response.status}");
-                        }
-                        } catch(error){
-                                console.error(error.message);
-                            }
-                    }
-                    </script>
                     
+                
                     <label for="fName">Förnamn</label>
                     <input type="text" id="fName"><br>
                     <label for="lName">Efternamn</label>
@@ -89,10 +46,10 @@
                     <input type="number" min="0" max="50" id="stjPass"><br>
                     <label for="bdPass">bdPass</label>
                     <input type="number" min="0" max="50" id="bdPass"><br>
+                    <label for="msg">Vill du meddela ledningen något???</label>
+                    <input type="text" id="msg"><br>
                     <button onclick="getAndParseInputData()">Skicka in</button>
-                        
-                          
-                    <p id="skickaIn"></p>
+                    <h3 id="skickaIn"></h3>
                 </section> 
             </main>
             <Footer>
